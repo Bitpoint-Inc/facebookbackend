@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.utils.decorators import method_decorator
+from rest_framework.views import APIView, csrf_exempt
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from .forms import UserCreationForm
@@ -11,6 +12,8 @@ class HomeView(APIView):
     def get(self, request):
         return Response({"message": "Successfully logged in"})
 
+
+@method_decorator(csrf_exempt, name="dispatch")
 class RegisterView(APIView):
     permission_classes = (AllowAny,)
 

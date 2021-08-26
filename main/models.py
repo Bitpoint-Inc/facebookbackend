@@ -6,7 +6,8 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    email       = models.EmailField(_("email"), max_length=254)
+    dob         = models.DateField(_("dob")) 
+    email       = models.EmailField(_("email"), null=True, blank=True, max_length=254)
     phone       = models.CharField(_("phone"), max_length=14, unique=True)
     picture     = models.ImageField(_("picture"), blank=True, null=True, upload_to="media/")
     is_staff    = models.BooleanField(_("is staff"), default=False)
